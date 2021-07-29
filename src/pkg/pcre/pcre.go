@@ -54,7 +54,6 @@ package pcre
 import "C"
 
 import (
-	"fmt"
 	"log"
 	"reflect"
 	"strconv"
@@ -424,7 +423,6 @@ func (m *Matcher) Names() []string {
 			Len:  m.namecount() * m.nameentrysize(),
 			Cap:  m.namecount() * m.nameentrysize(),
 		}))
-	fmt.Println(len(data))
 	for i := 0; i < len(data); {
 		n := (int(data[i]) << 8) | int(data[i+1])
 		s := string(data[i+2 : i+m.nameentrysize()-1])
