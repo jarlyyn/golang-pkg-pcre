@@ -47,8 +47,6 @@
 package pcre
 
 /*
-#cgo LDFLAGS: -lpcre
-#cgo CFLAGS: -I/opt/local/include
 #include <pcre.h>
 #include <string.h>
 */
@@ -103,7 +101,7 @@ const (
 
 type Info int
 
-//code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
+// code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
 const (
 	InfoOptions       Info = C.PCRE_INFO_OPTIONS
 	InfoSize               = C.PCRE_INFO_SIZE
@@ -378,7 +376,7 @@ func (m *Matcher) pcre() *C.pcre {
 
 }
 
-//code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
+// code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
 func (m *Matcher) namecount() int {
 	var i C.int
 	if rc := C.pcre_fullinfo((*C.struct_real_pcre)(m.pcre()), nil, InfoNamecount, unsafe.Pointer(&i)); rc != 0 {
@@ -387,7 +385,7 @@ func (m *Matcher) namecount() int {
 	return int(i)
 }
 
-//code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
+// code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
 func (m *Matcher) nameentrysize() int {
 	var i C.int
 	if rc := C.pcre_fullinfo((*C.struct_real_pcre)(m.pcre()), nil, InfoNameentrysize, unsafe.Pointer(&i)); rc != 0 {
@@ -396,7 +394,7 @@ func (m *Matcher) nameentrysize() int {
 	return int(i)
 }
 
-//code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
+// code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
 func (m *Matcher) capturecount() int {
 	var i C.int
 	if rc := C.pcre_fullinfo((*C.struct_real_pcre)(m.pcre()), nil, InfoCapturecount, unsafe.Pointer(&i)); rc != 0 {
@@ -405,7 +403,7 @@ func (m *Matcher) capturecount() int {
 	return int(i)
 }
 
-//code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
+// code from https://github.com/martinolsen/go-pcre/blob/master/pcre.go
 func (m *Matcher) Names() []string {
 	pcre := m.pcre()
 	names := make([]string, m.capturecount()+1)
